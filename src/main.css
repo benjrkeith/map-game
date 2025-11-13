@@ -1,0 +1,26 @@
+@import 'tailwindcss';
+
+@layer base {
+  html,
+  body,
+  #root {
+    @apply h-full w-full overflow-hidden bg-zinc-900;
+  }
+  button {
+    @apply cursor-pointer;
+  }
+}
+
+@layer utilities {
+  .shadow-up {
+    @apply shadow-[0px_-10px_10px] shadow-black/25;
+  }
+  .shadow-down {
+    @apply shadow-[0px_10px_10px] shadow-black/25;
+  }
+}
+
+@theme {
+  --color-offwhite: #dedede;
+  --font-sans: 'Roboto', sans-serif;
+}
