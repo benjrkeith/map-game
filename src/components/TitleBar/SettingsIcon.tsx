@@ -1,0 +1,19 @@
+import type { SVGProps } from 'react'
+
+export function SettingsIcon(props: SVGProps<SVGPathElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={25}
+      height={25}
+      viewBox="0 -0.5 21 21"
+    >
+      <path
+        fill="#FFF"
+        {...props}
+        fillRule="evenodd"
+        d="M8.261 10.695c-1.638 1.56-4.294 1.56-5.932 0L.614 9.062a1.93 1.93 0 0 1 0-2.824 2.173 2.173 0 0 1 2.967 0c1.14 1.087 2.392.987 3.196.22.81-.772.908-1.96-.236-3.048a1.93 1.93 0 0 1 0-2.825c.82-.78 2.148-.78 2.967 0l1.719 1.636a3.86 3.86 0 0 1 0 5.649l9.13 8.694c1.961 1.867-1.006 4.69-2.966 2.824l-9.13-8.693Z"
+      />
+    </svg>
+  )
+}

@@ -1,14 +1,23 @@
 import { useEffect, useRef, useState } from 'react'
+import { useShallow } from 'zustand/shallow'
 
 import { useGame } from '../../hooks/useGame'
 import { useSettings } from '../../hooks/useSettings'
+import { SettingsIcon } from './SettingsIcon'
 import { SettingsMenu } from './SettingsMenu'
+import { SurrenderIcon } from './SurrenderIcon'
 
 export function TitleBar() {
   const [showSettings, setShowSettings] = useState(false)
   const toggleSettings = () => setShowSettings((prev) => !prev)
 
-  const startCountry = useGame((s) => s.startCountry)
+  const { startCountry, state, endGame } = useGame(
+    useShallow((s) => ({
+      startCountry: s.startCountry,
+      state: s.state,
+      endGame: s.endGame,
+    })),
+  )
   const showCountryName = useSettings((s) => s.showCountryName)
 
   const ref = useRef<HTMLDivElement>(null)
@@ -28,14 +37,28 @@ export function TitleBar() {
         <h1 className="my-auto truncate text-3xl">
           {showCountryName ? startCountry.name : 'Map Game'}
         </h1>
-        <button
-          type="button"
-          style={{ fontWeight: 2000 }}
-          className="ml-auto px-3 text-4xl"
-          onClick={toggleSettings}
-        >
-          ⋮
-        </button>
+
+        <div className="ml-auto flex gap-2">
+          {(state === 'INIT' || state === 'PROGRESS') && (
+            <button
+              type="button"
+              onClick={endGame}
+              className="tooltip group p-1"
+            >
+              <SurrenderIcon className="group-hover:fill-zinc-400" />
+              <span className="tooltip-text">Surrender</span>
+            </button>
+          )}
+
+          <button
+            type="button"
+            onClick={toggleSettings}
+            className="tooltip group p-1"
+          >
+            <SettingsIcon className="group-hover:fill-zinc-400" />
+            <span className="tooltip-text">Settings</span>
+          </button>
+        </div>
       </div>
 
       <SettingsMenu isShown={showSettings} />

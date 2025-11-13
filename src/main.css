@@ -18,9 +18,42 @@
   .shadow-down {
     @apply shadow-[0px_10px_10px] shadow-black/25;
   }
+
+  .tooltip {
+    @apply relative;
+  }
+  .tooltip-text {
+    @apply invisible absolute top-full right-0 rounded-md bg-zinc-800 px-2 py-0.5 text-base text-nowrap text-white;
+  }
+  .tooltip:hover .tooltip-text {
+    @apply visible;
+  }
 }
 
 @theme {
   --color-offwhite: #dedede;
   --font-sans: 'Roboto', sans-serif;
 }
+
+/* .tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  cursor: pointer;
+}
+
+.tooltiptext {
+  visibility: hidden; 
+  width: 130px;
+  background-color: black;
+  color: #ffffff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1; 
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+} */

@@ -10,6 +10,13 @@ interface CountryProps {
 }
 
 export function Country({ data, viewBox, state, showBorders }: CountryProps) {
+  const { x, y } = data.bounds
+  const area = (x.max - x.min) * (y.max - y.min)
+  console.log(area, data.name)
+
+  console.log(area / 10, viewBox.w / 200)
+  const strokeWidth = Math.min(area / 10, viewBox.w / 200)
+
   return (
     <svg
       id={`${data.id}-${data.name}`}
@@ -18,7 +25,7 @@ export function Country({ data, viewBox, state, showBorders }: CountryProps) {
     >
       <path
         d={data.path}
-        style={{ strokeWidth: viewBox.w / 100 }}
+        style={{ strokeWidth }}
         className={clsx('duration-500 ease-in-out', {
           'fill-offwhite stroke-offwhite': state === 'START',
           'fill-emerald-600 stroke-emerald-600': state === 'KNOWN',

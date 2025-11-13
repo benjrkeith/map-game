@@ -11,13 +11,12 @@ export function Controls() {
   const [selected, setSelected] = useState(0)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const { startCountry, state, guesses, makeGuess, endGame } = useGame(
+  const { startCountry, state, guesses, makeGuess } = useGame(
     useShallow((s) => ({
       startCountry: s.startCountry,
       state: s.state,
       guesses: s.guesses,
       makeGuess: s.makeGuess,
-      endGame: s.endGame,
     })),
   )
 
@@ -84,8 +83,20 @@ export function Controls() {
               Guess
             </button>
           </div>
+        </div>
+      )}
 
-          <button onClick={endGame}>give up</button>
+      {(state === 'OVER' || state === 'WON') && (
+        <div className="z-20 grid grid-cols-2 bg-zinc-900 p-2 pb-0 text-lg font-semibold">
+          <button className="mx-2 rounded-lg bg-purple-600 py-1">
+            View Stats
+          </button>
+          <button
+            onClick={() => window.location.reload()}
+            className="mx-2 rounded-lg bg-emerald-600 py-1"
+          >
+            New Game
+          </button>
         </div>
       )}
 
