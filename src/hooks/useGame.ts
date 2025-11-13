@@ -11,14 +11,14 @@ interface State {
   viewBox: types.ViewBox
   guesses: string[]
   answers: types.Country[]
-  highlighted: string
+  highlight: string
   state: 'INIT' | 'PROGRESS' | 'OVER' | 'WON'
 }
 
 interface Actions {
   makeGuess: (guess: string) => void
   refineAnswers: () => Promise<void>
-  setHighlighted: (country: string) => void
+  setHighlight: (country: string) => void
   endGame: () => void
 }
 
@@ -29,7 +29,7 @@ export const useGame = create<GameStore>()((set, get) => ({
   viewBox,
   guesses: [],
   answers,
-  highlighted: '',
+  highlight: '',
   state: 'INIT',
 
   makeGuess: (guess: string) => {
@@ -53,9 +53,23 @@ export const useGame = create<GameStore>()((set, get) => ({
     )
   },
 
-  setHighlighted: (country) => {
-    set({ highlighted: country })
-    setTimeout(() => set(() => ({ highlighted: '' })), 1000)
+  setHighlight: (country) => {
+    // Fix for stroke not appearing if the target is lower on z-index than
+    // its neighbours. Can't animate z-index changes so this is best solution.
+    set((s) => {
+      const index = s.answers.findIndex((i) => i.name === country)
+      if (index === -1) return s
+
+      const items = [...s.answers]
+      items.push(items.splice(index, 1)[0])
+
+      return { answers: items }
+    })
+
+    setTimeout(() => {
+      set({ highlight: country })
+      setTimeout(() => set({ highlight: '' }), 1000)
+    }, 100)
   },
 
   endGame: () => set({ state: 'OVER' }),

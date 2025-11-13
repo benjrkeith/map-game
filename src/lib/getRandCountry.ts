@@ -12,7 +12,7 @@ export function getRandCountry() {
   const randIdx = Math.floor(Math.random() * filteredCountries.length)
   return filteredCountries[randIdx]
 
-  // const c = allCountries.find((c) => c.id === 'AU')
+  // const c = allCountries.find((c) => c.name === 'Cameroon')
   // if (!c) throw new Error()
   // return c
 }

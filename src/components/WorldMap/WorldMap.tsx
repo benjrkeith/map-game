@@ -13,32 +13,33 @@ export function WorldMap() {
     })),
   )
 
-  const { startCountry, viewBox, guesses, answers, highlighted } = useGame(
+  const { startCountry, state, viewBox, guesses, answers, highlight } = useGame(
     useShallow((s) => ({
       startCountry: s.startCountry,
+      state: s.state,
       viewBox: s.viewBox,
       guesses: s.guesses,
       answers: s.answers,
-      highlighted: s.highlighted,
+      highlight: s.highlight,
     })),
   )
 
   const getState = (country: string) => {
     if (startCountry.name === country) return 'START'
-    else if (country === highlighted) return 'HIGHLIGHT'
+    else if (highlight === country) return 'HIGHLIGHT'
     else if (guesses.includes(country)) return 'KNOWN'
-    else return 'UNKNOWN'
+    else return state === 'OVER' ? 'MISSED' : 'UNKNOWN'
   }
 
   return (
     <div className="overflow-hidden">
       <div
         className={clsx(
-          'relative aspect-square w-full min-w-[375px] bg-zinc-800 duration-500 ease-in-out',
+          'relative z-0 aspect-square w-full min-w-[375px] bg-zinc-800 duration-500 ease-in-out',
           { '!bg-blue-500': showOceans },
         )}
       >
-        {[...answers, startCountry].map((country) => (
+        {[startCountry, ...answers].map((country) => (
           <Country
             key={country.id}
             data={country}

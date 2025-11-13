@@ -5,7 +5,7 @@ import * as types from '../../types'
 interface CountryProps {
   data: types.Country
   viewBox: types.ViewBox
-  state: 'START' | 'KNOWN' | 'UNKNOWN' | 'HIGHLIGHT'
+  state: 'START' | 'KNOWN' | 'UNKNOWN' | 'MISSED' | 'HIGHLIGHT'
   showBorders: boolean
 }
 
@@ -23,7 +23,8 @@ export function Country({ data, viewBox, state, showBorders }: CountryProps) {
           'fill-offwhite stroke-offwhite': state === 'START',
           'fill-emerald-600 stroke-emerald-600': state === 'KNOWN',
           'fill-zinc-800 stroke-zinc-800': state === 'UNKNOWN',
-          'fill-purple-800 !stroke-purple-800 !stroke-1': state === 'HIGHLIGHT',
+          'fill-amber-500 stroke-amber-500': state === 'MISSED',
+          'fill-purple-800 stroke-purple-800 !stroke-1': state === 'HIGHLIGHT',
           '!stroke-zinc-700': showBorders && state !== 'HIGHLIGHT',
         })}
       />

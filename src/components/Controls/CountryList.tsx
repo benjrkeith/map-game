@@ -25,7 +25,7 @@ export function CountryList({
   return (
     <div
       className={clsx(
-        'shadow-up absolute flex max-h-38 w-full flex-col divide-y-2 divide-zinc-700 overflow-scroll border-b-2 border-zinc-700 bg-zinc-900/90 text-lg duration-100 ease-out',
+        'shadow-up absolute z-10 flex max-h-38 w-full flex-col divide-y-2 divide-zinc-700 overflow-scroll border-b-2 border-zinc-700 bg-zinc-900/90 text-lg duration-100 ease-out',
         {
           'peer-has-focus:-translate-y-full': countries.length > 0 && isHidden,
         },
