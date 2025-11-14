@@ -31,6 +31,8 @@ export function Game() {
         <Controls />
         <Guesses />
       </div>
+
+      <EndScreen />
     </BaseStyle>
   )
 }

@@ -13,6 +13,7 @@ interface State {
   answers: types.Country[]
   highlight: string
   state: 'INIT' | 'PROGRESS' | 'OVER' | 'WON'
+  hideStats: boolean
 }
 
 interface Actions {
@@ -20,6 +21,7 @@ interface Actions {
   refineAnswers: () => Promise<void>
   setHighlight: (country: string) => void
   endGame: () => void
+  toggleStats: () => void
 }
 
 type GameStore = State & Actions
@@ -31,6 +33,7 @@ export const useGame = create<GameStore>()((set, get) => ({
   answers,
   highlight: '',
   state: 'INIT',
+  hideStats: false,
 
   makeGuess: (guess: string) => {
     set((s) => ({ guesses: [...s.guesses, guess] }))
@@ -73,4 +76,5 @@ export const useGame = create<GameStore>()((set, get) => ({
   },
 
   endGame: () => set({ state: 'OVER' }),
+  toggleStats: () => set((s) => ({ hideStats: !s.hideStats })),
 }))

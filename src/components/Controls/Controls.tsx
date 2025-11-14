@@ -11,12 +11,13 @@ export function Controls() {
   const [selected, setSelected] = useState(0)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const { startCountry, state, guesses, makeGuess } = useGame(
+  const { startCountry, state, guesses, makeGuess, toggleStats } = useGame(
     useShallow((s) => ({
       startCountry: s.startCountry,
       state: s.state,
       guesses: s.guesses,
       makeGuess: s.makeGuess,
+      toggleStats: s.toggleStats,
     })),
   )
 
@@ -57,7 +58,7 @@ export function Controls() {
     <div className="relative flex h-fit flex-col">
       {(state === 'INIT' || state === 'PROGRESS') && (
         <div className="peer z-20 flex flex-col items-center bg-zinc-900 px-2">
-          <div className="relative flex w-full pt-2 text-lg">
+          <div className="relative flex w-full pt-3 text-lg">
             <input
               autoFocus
               autoComplete="off"
@@ -87,13 +88,16 @@ export function Controls() {
       )}
 
       {(state === 'OVER' || state === 'WON') && (
-        <div className="z-20 grid grid-cols-2 bg-zinc-900 p-2 pb-0 text-lg font-semibold">
-          <button className="mx-2 rounded-lg bg-purple-600 py-1">
+        <div className="z-20 grid grid-cols-2 bg-zinc-900 px-2 pt-3 text-lg font-semibold">
+          <button
+            onClick={toggleStats}
+            className="mx-6 rounded-lg bg-purple-600 py-0.5 hover:bg-purple-800"
+          >
             View Stats
           </button>
           <button
             onClick={() => window.location.reload()}
-            className="mx-2 rounded-lg bg-emerald-600 py-1"
+            className="mx-6 rounded-lg bg-emerald-600 py-0.5 hover:bg-emerald-800"
           >
             New Game
           </button>

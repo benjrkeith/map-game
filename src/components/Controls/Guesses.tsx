@@ -23,7 +23,7 @@ export function Guesses() {
     .sort()
 
   return (
-    <div className="relative z-20 flex w-full grow flex-col gap-2 bg-zinc-900 px-2 pt-2 font-medium">
+    <div className="relative z-20 flex w-full grow flex-col gap-2 bg-zinc-900 px-2 pt-3 font-medium">
       {correct.length > 0 && (
         <div className="flex w-full flex-col gap-1">
           <h2 className="text-md font-semibold">Correct:</h2>
@@ -51,7 +51,7 @@ export function Guesses() {
                 type="button"
                 key={guess}
                 onClick={() => setHighlight(guess)}
-                className="h-fit w-fit rounded-lg bg-amber-600 px-2 py-0.5 text-sm"
+                className="h-fit w-fit rounded-lg bg-amber-500 px-2 py-0.5 text-sm"
               >
                 {guess}
               </button>

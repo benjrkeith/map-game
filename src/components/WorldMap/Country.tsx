@@ -12,9 +12,6 @@ interface CountryProps {
 export function Country({ data, viewBox, state, showBorders }: CountryProps) {
   const { x, y } = data.bounds
   const area = (x.max - x.min) * (y.max - y.min)
-  console.log(area, data.name)
-
-  console.log(area / 10, viewBox.w / 200)
   const strokeWidth = Math.min(area / 10, viewBox.w / 200)
 
   return (
