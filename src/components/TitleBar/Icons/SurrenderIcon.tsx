@@ -8,6 +8,7 @@ export function SurrenderIcon(props: SVGProps<SVGPathElement>) {
       width={25}
       height={25}
       viewBox="0 0 51.48 51.48"
+      className="shrink-0"
     >
       <path
         fill="#FFF"

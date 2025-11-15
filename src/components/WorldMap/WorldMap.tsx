@@ -28,7 +28,8 @@ export function WorldMap() {
     if (startCountry.name === country) return 'START'
     else if (highlight === country) return 'HIGHLIGHT'
     else if (guesses.includes(country)) return 'KNOWN'
-    else return state === 'OVER' ? 'MISSED' : 'UNKNOWN'
+    else if (state === 'OVER') return 'MISSED'
+    else return 'UNKNOWN'
   }
 
   return (

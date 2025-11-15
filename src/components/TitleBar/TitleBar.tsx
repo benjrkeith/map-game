@@ -3,19 +3,21 @@ import { useShallow } from 'zustand/shallow'
 
 import { useGame } from '../../hooks/useGame'
 import { useSettings } from '../../hooks/useSettings'
-import { SettingsIcon } from './SettingsIcon'
+import { InfoIcon } from './Icons/InfoIcon'
+import { SettingsIcon } from './Icons/SettingsIcon'
+import { SurrenderIcon } from './Icons/SurrenderIcon'
 import { SettingsMenu } from './SettingsMenu'
-import { SurrenderIcon } from './SurrenderIcon'
 
 export function TitleBar() {
   const [showSettings, setShowSettings] = useState(false)
   const toggleSettings = () => setShowSettings((prev) => !prev)
 
-  const { startCountry, state, endGame } = useGame(
+  const { startCountry, state, endGame, toggleInfo } = useGame(
     useShallow((s) => ({
       startCountry: s.startCountry,
       state: s.state,
       endGame: s.endGame,
+      toggleInfo: s.toggleInfo,
     })),
   )
   const showCountryName = useSettings((s) => s.showCountryName)
@@ -33,12 +35,12 @@ export function TitleBar() {
 
   return (
     <div ref={ref} className="relative">
-      <div className="shadow-down relative z-20 flex bg-zinc-900 px-3 py-2 font-bold">
+      <div className="shadow-down relative z-20 flex gap-2 bg-zinc-900 px-3 py-2 font-bold">
         <h1 className="my-auto truncate text-3xl">
           {showCountryName ? startCountry.name : 'Map Game'}
         </h1>
 
-        <div className="ml-auto flex gap-2">
+        <div className="ml-auto flex gap-1">
           {(state === 'INIT' || state === 'PROGRESS') && (
             <button
               type="button"
@@ -49,6 +51,15 @@ export function TitleBar() {
               <span className="tooltip-text">Surrender</span>
             </button>
           )}
+
+          <button
+            type="button"
+            onClick={toggleInfo}
+            className="tooltip group p-1"
+          >
+            <InfoIcon className="group-hover:fill-zinc-400" />
+            <span className="tooltip-text">Info</span>
+          </button>
 
           <button
             type="button"

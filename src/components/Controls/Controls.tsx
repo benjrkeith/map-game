@@ -8,7 +8,7 @@ import { CountryList } from './CountryList'
 
 export function Controls() {
   const [input, setInput] = useState('')
-  const [selected, setSelected] = useState(0)
+  const [selected, setSelected] = useState(-1)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const { startCountry, state, guesses, makeGuess, toggleStats } = useGame(
@@ -37,8 +37,10 @@ export function Controls() {
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'ArrowUp') {
+      e.preventDefault()
       if (selected > 0) setSelected((prev) => prev - 1)
     } else if (e.key === 'ArrowDown') {
+      e.preventDefault()
       if (selected < filtered.length - 1) setSelected((prev) => prev + 1)
     } else if (e.key === 'Escape') {
       inputRef.current?.blur()
@@ -60,7 +62,6 @@ export function Controls() {
         <div className="peer z-20 flex flex-col items-center bg-zinc-900 px-2">
           <div className="relative flex w-full pt-3 text-lg">
             <input
-              autoFocus
               autoComplete="off"
               value={input}
               ref={inputRef}
@@ -111,6 +112,7 @@ export function Controls() {
         callback={(country: string) => {
           setInput(country)
           setSelected(0)
+          inputRef.current?.focus()
         }}
       />
     </div>

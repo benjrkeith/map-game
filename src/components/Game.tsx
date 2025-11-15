@@ -6,6 +6,7 @@ import { BaseStyle } from './BaseStyle'
 import { Controls } from './Controls/Controls'
 import { Guesses } from './Controls/Guesses'
 import { EndScreen } from './EndScreen'
+import { InfoScreen } from './InfoScreen'
 import { TitleBar } from './TitleBar/TitleBar'
 import { WorldMap } from './WorldMap/WorldMap'
 
@@ -32,6 +33,7 @@ export function Game() {
         <Guesses />
       </div>
 
+      <InfoScreen />
       <EndScreen />
     </BaseStyle>
   )

@@ -7,6 +7,7 @@ export function SettingsIcon(props: SVGProps<SVGPathElement>) {
       width={25}
       height={25}
       viewBox="0 -0.5 21 21"
+      className="shrink-0"
     >
       <path
         fill="#FFF"
