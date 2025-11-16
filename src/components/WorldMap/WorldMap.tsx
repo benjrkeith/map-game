@@ -32,12 +32,14 @@ export function WorldMap() {
     else return 'UNKNOWN'
   }
 
+  const isOver = state === 'OVER' || state === 'WON'
+
   return (
     <div className="overflow-hidden">
       <div
         className={clsx(
           'relative z-0 aspect-square w-full min-w-[375px] bg-zinc-800 duration-500 ease-in-out',
-          { '!bg-blue-500': showOceans },
+          { '!bg-blue-500': showOceans || isOver },
         )}
       >
         {[startCountry, ...answers].map((country) => (
@@ -46,7 +48,7 @@ export function WorldMap() {
             data={country}
             viewBox={viewBox}
             state={getState(country.name)}
-            showBorders={showBorders}
+            showBorders={showBorders || isOver}
           />
         ))}
       </div>

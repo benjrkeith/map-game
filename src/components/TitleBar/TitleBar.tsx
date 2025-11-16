@@ -33,41 +33,28 @@ export function TitleBar() {
     return () => document.removeEventListener('mousedown', handleMouseDown)
   }, [showSettings])
 
+  const isOver = state === 'OVER' || state === 'WON'
+
   return (
     <div ref={ref} className="relative">
       <div className="shadow-down relative z-20 flex gap-2 bg-zinc-900 px-3 py-2 font-bold">
         <h1 className="my-auto truncate text-3xl">
-          {showCountryName ? startCountry.name : 'Map Game'}
+          {showCountryName || isOver ? startCountry.name : 'Map Game'}
         </h1>
 
         <div className="ml-auto flex gap-1">
-          {(state === 'INIT' || state === 'PROGRESS') && (
-            <button
-              type="button"
-              onClick={endGame}
-              className="tooltip group p-1"
-            >
+          {!isOver && (
+            <button type="button" onClick={endGame} className="group p-1">
               <SurrenderIcon className="group-hover:fill-zinc-400" />
-              <span className="tooltip-text">Surrender</span>
             </button>
           )}
 
-          <button
-            type="button"
-            onClick={toggleInfo}
-            className="tooltip group p-1"
-          >
+          <button type="button" onClick={toggleInfo} className="group p-1">
             <InfoIcon className="group-hover:fill-zinc-400" />
-            <span className="tooltip-text">Info</span>
           </button>
 
-          <button
-            type="button"
-            onClick={toggleSettings}
-            className="tooltip group p-1"
-          >
+          <button type="button" onClick={toggleSettings} className="group p-1">
             <SettingsIcon className="group-hover:fill-zinc-400" />
-            <span className="tooltip-text">Settings</span>
           </button>
         </div>
       </div>
