@@ -10,10 +10,10 @@ export function getRandCountry() {
     return area >= MIN_COUNTRY_SIZE
   })
 
-  const randIdx = Math.floor(Math.random() * filteredCountries.length)
-  return filteredCountries[randIdx]
+  // const randIdx = Math.floor(Math.random() * filteredCountries.length)
+  // return filteredCountries[randIdx]
 
-  // const c = allCountries.find((c) => c.name === 'Faroe Islands')
-  // if (!c) throw new Error()
-  // return c
+  const c = allCountries.find((c) => c.name === 'Germany')
+  if (!c) throw new Error()
+  return c
 }

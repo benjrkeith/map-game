@@ -33,4 +33,5 @@
 @theme {
   --color-offwhite: #dedede;
   --font-sans: 'Roboto', sans-serif;
+  --breakpoint-xs: 26rem;
 }

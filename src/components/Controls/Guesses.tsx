@@ -23,17 +23,17 @@ export function Guesses() {
     .sort()
 
   return (
-    <div className="relative z-20 flex min-h-40 w-full grow flex-col gap-2 bg-zinc-900 px-2 pt-3 font-medium">
+    <div className="relative z-20 flex min-h-40 w-full grow flex-col gap-1 bg-zinc-900 px-2 pt-1 font-medium xs:gap-3 xs:pt-3">
       {correct.length > 0 && (
         <div className="flex w-full flex-col gap-1">
-          <h2 className="text-md font-semibold">Correct:</h2>
+          <h2 className="text-lg font-semibold xs:text-xl">Correct:</h2>
           <div className="flex flex-wrap gap-1.5">
             {correct.map((guess) => (
               <button
                 type="button"
                 key={guess}
                 onClick={() => setHighlight(guess)}
-                className="h-fit w-fit rounded-lg bg-emerald-600 px-2 py-0.5 text-sm"
+                className="h-fit w-fit rounded-lg bg-emerald-600 px-2 py-0.5 text-base xs:px-3 xs:text-lg"
               >
                 {guess}
               </button>
@@ -44,14 +44,14 @@ export function Guesses() {
 
       {state === 'OVER' && missing.length > 0 && (
         <div className="flex w-fit flex-col gap-1">
-          <h2 className="text-md font-semibold">Missed:</h2>
+          <h2 className="text-lg font-semibold xs:text-xl">Missed:</h2>
           <div className="flex flex-wrap gap-1.5">
             {missing.map((guess) => (
               <button
                 type="button"
                 key={guess}
                 onClick={() => setHighlight(guess)}
-                className="h-fit w-fit rounded-lg bg-amber-500 px-2 py-0.5 text-sm"
+                className="h-fit w-fit rounded-lg bg-amber-500 px-2 py-0.5 text-base xs:px-3 xs:text-lg"
               >
                 {guess}
               </button>
@@ -62,12 +62,12 @@ export function Guesses() {
 
       {incorrect.length > 0 && (
         <div className="flex w-fit flex-col gap-1">
-          <h2 className="text-md font-semibold">Incorrect:</h2>
+          <h2 className="text-lg font-semibold xs:text-xl">Incorrect:</h2>
           <div className="flex flex-wrap gap-1.5">
             {incorrect.map((guess) => (
               <p
                 key={guess}
-                className="h-fit w-fit rounded-lg bg-red-800 px-2 py-0.5 text-sm"
+                className="h-fit w-fit rounded-lg bg-red-800 px-2 py-0.5 text-base xs:px-3 xs:text-lg"
               >
                 {guess}
               </p>

@@ -35,23 +35,21 @@ export function WorldMap() {
   const isOver = state === 'OVER' || state === 'WON'
 
   return (
-    <div className="overflow-hidden">
-      <div
-        className={clsx(
-          'relative z-0 aspect-square w-full min-w-[375px] bg-zinc-800 duration-500 ease-in-out',
-          { '!bg-blue-500': showOceans || isOver },
-        )}
-      >
-        {[startCountry, ...answers].map((country) => (
-          <Country
-            key={country.id}
-            data={country}
-            viewBox={viewBox}
-            state={getState(country.name)}
-            showBorders={showBorders || isOver}
-          />
-        ))}
-      </div>
+    <div
+      className={clsx(
+        'relative z-0 aspect-square w-full min-w-[375px] bg-zinc-800 duration-500 ease-in-out',
+        { '!bg-blue-500': showOceans || isOver },
+      )}
+    >
+      {[startCountry, ...answers].map((country) => (
+        <Country
+          key={country.id}
+          data={country}
+          viewBox={viewBox}
+          state={getState(country.name)}
+          showBorders={showBorders || isOver}
+        />
+      ))}
     </div>
   )
 }

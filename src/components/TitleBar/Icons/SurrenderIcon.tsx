@@ -5,10 +5,8 @@ export function SurrenderIcon(props: SVGProps<SVGPathElement>) {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlSpace="preserve"
-      width={25}
-      height={25}
       viewBox="0 0 51.48 51.48"
-      className="shrink-0"
+      className="size-6 shrink-0 xs:size-7"
     >
       <path
         fill="#FFF"

@@ -23,11 +23,12 @@ export function Controls() {
 
   const filtered = allCountries.filter(
     (c) =>
-      c.name.toLowerCase().includes(input.toLowerCase()) &&
+      c.name.toLowerCase().includes(input.toLowerCase().trim()) &&
       c.name !== startCountry.name &&
       !guesses.includes(c.name),
   )
-  const isValidInput = input === filtered[selected]?.name
+
+  const isValidInput = input.trim() === filtered[selected]?.name
 
   const handleSubmit = () => {
     makeGuess(filtered[selected].name)
@@ -45,9 +46,9 @@ export function Controls() {
     } else if (e.key === 'Escape') {
       inputRef.current?.blur()
     } else if (e.key === 'Enter') {
-      if (input === '') return
+      if (input.trim() === '') return
       const target = filtered[selected]?.name
-      if (target === input) handleSubmit()
+      if (target === input.trim()) handleSubmit()
       else if (target) {
         setInput(target)
         setSelected(0)
@@ -60,7 +61,7 @@ export function Controls() {
     <div className="relative flex h-fit flex-col">
       {(state === 'INIT' || state === 'PROGRESS') && (
         <div className="peer z-20 flex flex-col items-center bg-zinc-900 px-2">
-          <div className="relative flex w-full pt-3 text-lg">
+          <div className="relative flex w-full max-w-112 pt-3 text-lg xs:text-xl">
             <input
               autoComplete="off"
               value={input}
@@ -89,16 +90,16 @@ export function Controls() {
       )}
 
       {(state === 'OVER' || state === 'WON') && (
-        <div className="z-20 grid grid-cols-2 bg-zinc-900 px-2 pt-3 text-lg font-semibold">
+        <div className="z-20 grid grid-cols-2 bg-zinc-900 px-2 pt-2 text-lg font-semibold xs:pt-4 xs:text-xl">
           <button
             onClick={toggleStats}
-            className="mx-6 rounded-lg bg-purple-600 py-0.5 hover:bg-purple-800"
+            className="mx-6 rounded-lg bg-purple-600 py-0.5 hover:bg-purple-800 xs:py-1"
           >
             View Stats
           </button>
           <button
             onClick={() => window.location.reload()}
-            className="mx-6 rounded-lg bg-emerald-600 py-0.5 hover:bg-emerald-800"
+            className="mx-6 rounded-lg bg-emerald-600 py-0.5 hover:bg-emerald-800 xs:py-1"
           >
             New Game
           </button>
@@ -108,7 +109,7 @@ export function Controls() {
       <CountryList
         countries={filtered}
         selected={selected}
-        isHidden={!isValidInput && input !== ''}
+        isHidden={!isValidInput && input.trim() !== ''}
         callback={(country: string) => {
           setInput(country)
           setSelected(0)

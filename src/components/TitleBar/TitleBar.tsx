@@ -38,7 +38,7 @@ export function TitleBar() {
   return (
     <div ref={ref} className="relative">
       <div className="shadow-down relative z-20 flex gap-2 bg-zinc-900 px-3 py-2 font-bold">
-        <h1 className="my-auto truncate text-3xl">
+        <h1 className="my-auto truncate text-3xl xs:text-4xl">
           {showCountryName || isOver ? startCountry.name : 'Map Game'}
         </h1>
 

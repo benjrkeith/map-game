@@ -49,36 +49,36 @@ export function EndScreen() {
     >
       <div
         ref={innerRef}
-        className="m-auto flex h-fit w-3/4 flex-col gap-4 rounded-sm bg-zinc-900 px-4 py-6 text-center shadow-xl shadow-black/40"
+        className="m-auto flex h-fit w-3/4 flex-col gap-4 rounded-sm bg-zinc-900 px-4 py-6 text-center shadow-xl shadow-black/40 xs:gap-6"
       >
-        <h3 className="w-full text-3xl font-semibold">
+        <h3 className="w-full text-3xl font-semibold xs:text-4xl">
           {state === 'WON' ? 'You win!' : 'Game over!'}
         </h3>
 
         <div className="flex justify-evenly">
-          <div className="text-lg">
+          <div className="text-lg xs:text-xl">
             <p className="text-emerald-600">{correct.length} correct</p>
             <p className="text-amber-500">{missing.length} missed</p>
             <p className="text-rose-600">{incorrect.length} incorrect</p>
           </div>
 
           <div className="my-auto text-center">
-            <p className="text-4xl font-semibold">{score}%</p>
-            <p className="text-lg">Score</p>
+            <p className="text-4xl font-semibold xs:text-5xl">{score}%</p>
+            <p className="text-lg xs:text-xl">Score</p>
           </div>
         </div>
 
         <div className="">
-          <div className="z-20 grid grid-cols-2 gap-4 bg-zinc-900 px-4 text-lg font-semibold">
+          <div className="z-20 grid grid-cols-2 gap-4 bg-zinc-900 px-4 text-lg font-semibold xs:text-xl">
             <button
               onClick={toggleStats}
-              className="rounded-lg bg-purple-600 py-0.5 hover:bg-purple-800"
+              className="rounded-lg bg-purple-600 py-0.5 hover:bg-purple-800 xs:py-1"
             >
               View Map
             </button>
             <button
               onClick={() => window.location.reload()}
-              className="rounded-lg bg-emerald-600 py-0.5 hover:bg-emerald-800"
+              className="rounded-lg bg-emerald-600 py-0.5 hover:bg-emerald-800 xs:py-1"
             >
               New Game
             </button>
@@ -86,7 +86,7 @@ export function EndScreen() {
         </div>
 
         <div className="flex flex-col gap-1">
-          <h4 className="text-xl font-semibold">All Time</h4>
+          <h4 className="text-xl font-semibold xs:text-2xl">All Time</h4>
           <div className="grid grid-cols-3">
             <Stat label="Played" value={played} />
             <Stat
@@ -111,8 +111,8 @@ function Stat(props: StatProps) {
 
   return (
     <div className="text-center">
-      <p className="text-2xl font-semibold">{value}</p>
-      <p className="text-xs">{label}</p>
+      <p className="text-2xl font-semibold xs:text-3xl">{value}</p>
+      <p className="text-xs xs:text-base">{label}</p>
     </div>
   )
 }
